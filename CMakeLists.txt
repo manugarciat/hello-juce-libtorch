@@ -13,7 +13,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}")
 add_subdirectory(../../../JUCE ./JUCE)
 
 
-juce_add_plugin(minimal_plugin
+juce_add_plugin(${CMAKE_PROJECT_NAME}
         COMPANY_NAME mnlgt
         # set to false if you want audio input
         IS_SYNTH TRUE
@@ -28,16 +28,16 @@ juce_add_plugin(minimal_plugin
         # should change for each plugin
         PRODUCT_NAME "minimal_plugin")
 
-juce_generate_juce_header(minimal_plugin)
+juce_generate_juce_header(${CMAKE_PROJECT_NAME})
 
-target_sources(minimal_plugin
+target_sources(${CMAKE_PROJECT_NAME}
         PRIVATE
         src/PluginEditor.cpp
         src/PluginProcessor.cpp)
 
-set_property(TARGET minimal_plugin PROPERTY CXX_STANDARD 20)
+set_property(TARGET ${CMAKE_PROJECT_NAME} PROPERTY CXX_STANDARD 20)
 
-target_compile_definitions(minimal_plugin
+target_compile_definitions(${CMAKE_PROJECT_NAME}
         PUBLIC #
         JUCE_ALSA=1
         JUCE_DIRECTSOUND=1
@@ -48,7 +48,7 @@ target_compile_definitions(minimal_plugin
         JUCE_VST3_CAN_REPLACE_VST2=0)
 
 
-target_link_libraries(minimal_plugin
+target_link_libraries(${CMAKE_PROJECT_NAME}
 
         PRIVATE
         juce::juce_audio_utils
