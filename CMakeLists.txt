@@ -30,13 +30,12 @@ juce_add_plugin(minimal_plugin
 
 juce_generate_juce_header(minimal_plugin)
 
-#add_executable(hello-cmake-juce src/PluginEditor.cpp)
 target_sources(minimal_plugin
         PRIVATE
         src/PluginEditor.cpp
         src/PluginProcessor.cpp)
 
-set_property(TARGET minimal_plugin PROPERTY CXX_STANDARD 14)
+set_property(TARGET minimal_plugin PROPERTY CXX_STANDARD 20)
 
 target_compile_definitions(minimal_plugin
         PUBLIC #
@@ -59,5 +58,3 @@ target_link_libraries(minimal_plugin
         juce::juce_recommended_config_flags
         juce::juce_recommended_lto_flags
         juce::juce_recommended_warning_flags)
-#target_link_libraries(main PRIVATE ${TORCH_LIBRARIES})
-target_link_libraries(minimal_plugin PRIVATE ${TORCH_LIBRARIES})
